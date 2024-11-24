@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public float speed = 20;
     public float jumpForce = 20;
     public float gravityForce = -40;
-    private bool isOnGround = false;
+    protected bool isOnGround = false;
     public Rigidbody playerRb;
 
     // Start is called before the first frame update
@@ -19,10 +19,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        Action();
-        Jump();
-
+        Move(); // ABSTRACTION
+        Action(); // ABSTRACTION
     }
 
     void Move()
@@ -51,14 +49,7 @@ public class Player : MonoBehaviour
     public virtual void Action()
     { }
     
-    void Jump()
-    {
-        //Jump
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
-        {
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
-    }
+   
 
 
     void OnCollisionStay(Collision collision)
