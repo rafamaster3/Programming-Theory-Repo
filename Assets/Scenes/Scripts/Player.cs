@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
+        Action();
+        Jump();
 
     }
 
@@ -42,13 +44,23 @@ public class Player : MonoBehaviour
                 playerRb.angularVelocity = movementDirection * speed;
             }
 
-            //Jump
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            }
+            
         }
     }
+
+    public virtual void Action()
+    { }
+    
+    void Jump()
+    {
+        //Jump
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        {
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+    }
+
+
     void OnCollisionStay(Collision collision)
 
     {
